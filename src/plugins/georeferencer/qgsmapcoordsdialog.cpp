@@ -21,6 +21,8 @@
 #include "qgsgeorefvalidators.h"
 #include "qgsmapcoordsdialog.h"
 
+#include <QSettings>
+
 QgsMapCoordsDialog::QgsMapCoordsDialog( QgsMapCanvas* qgisCanvas, QgsPoint pixelCoords, QWidget* parent )
     : QDialog( parent, Qt::Dialog ), mQgisCanvas( qgisCanvas ), mPixelCoords( pixelCoords )
 {
@@ -132,14 +134,17 @@ void QgsMapCoordsDialog::maybeSetXY( const QgsPoint & xy, Qt::MouseButton button
 
 void QgsMapCoordsDialog::setToolEmitPoint( bool isEnable )
 {
+  QSettings s;
   if ( isEnable )
   {
-    parentWidget()->showMinimized();
+    if ( !s.value( "/Plugin-GeoReferencer/Config/KeepWindowOpened" ).toBool() )
+    {
+      parentWidget()->showMinimized();
 
-    assert( parentWidget()->parentWidget() != 0 );
-    parentWidget()->parentWidget()->activateWindow();
-    parentWidget()->parentWidget()->raise();
-
+      assert( parentWidget()->parentWidget() != 0 );
+      parentWidget()->parentWidget()->activateWindow();
+      parentWidget()->parentWidget()->raise();
+    }
     mPrevMapTool = mQgisCanvas->mapTool();
     mQgisCanvas->setMapTool( mToolEmitPoint );
   }

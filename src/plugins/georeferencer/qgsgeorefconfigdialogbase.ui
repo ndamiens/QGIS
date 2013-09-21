@@ -115,7 +115,7 @@
      </property>
     </widget>
    </item>
-   <item row="5" column="0">
+   <item row="6" column="0">
     <widget class="QDialogButtonBox" name="buttonBox">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
@@ -146,6 +146,16 @@
        </layout>
       </item>
      </layout>
+    </widget>
+   </item>
+   <item row="5" column="0">
+    <widget class="QCheckBox" name="mKeepGeoreferencerOpenCheckBox">
+     <property name="toolTip">
+      <string>Keep window opened when switching to map to get coordinates.</string>
+     </property>
+     <property name="text">
+      <string>Keep Georeferencer window opened</string>
+     </property>
     </widget>
    </item>
   </layout>

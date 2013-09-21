@@ -120,6 +120,15 @@ void QgsGeorefConfigDialog::readSettings()
 
   mLeftMarginSpinBox->setValue( s.value( "/Plugin-GeoReferencer/Config/LeftMarginPDF", "2.0" ).toDouble() );
   mRightMarginSpinBox->setValue( s.value( "/Plugin-GeoReferencer/Config/RightMarginPDF", "2.0" ).toDouble() );
+
+  if ( s.value( "/Plugin-GeoReferencer/Config/KeepWindowOpened" ).toBool() )
+  {
+    mKeepGeoreferencerOpenCheckBox->setChecked( true );
+  }
+  else
+  {
+    mKeepGeoreferencerOpenCheckBox->setChecked( false );
+  }
 }
 
 void QgsGeorefConfigDialog::writeSettings()
@@ -142,5 +151,6 @@ void QgsGeorefConfigDialog::writeSettings()
   s.setValue( "/Plugin-GeoReferencer/Config/WidthPDFMap", mPaperSizeComboBox->itemData( mPaperSizeComboBox->currentIndex() ).toSizeF().width() );
   s.setValue( "/Plugin-GeoReferencer/Config/HeightPDFMap", mPaperSizeComboBox->itemData( mPaperSizeComboBox->currentIndex() ).toSizeF().height() );
 
+  s.setValue( "/Plugin-GeoReferencer/Config/KeepWindowOpened", mKeepGeoreferencerOpenCheckBox->isChecked() );
 }
 
