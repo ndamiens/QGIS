@@ -348,7 +348,7 @@ class DBManager(QMainWindow):
 		self.setCentralWidget(self.tabs)
 
 		# create database tree
-		self.dock = QDockWidget("Tree", self)
+		self.dock = QDockWidget(self.tr("Tree"), self)
 		self.dock.setObjectName("DB_Manager_DBView")
 		self.dock.setFeatures(QDockWidget.DockWidgetMovable)
 		self.tree = DBTree(self)
